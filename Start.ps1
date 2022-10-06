@@ -133,7 +133,7 @@ Write-Host "Installing NVIDIA vGaming Drivers" -ForegroundColor Cyan
 $NVDriverURL = "https://nvidia-gaming.s3.amazonaws.com/" + (Invoke-RestMethod "https://nvidia-gaming.s3.amazonaws.com/?prefix=windows/latest").ListBucketResult.Contents.Key[1]
 Invoke-WebRequest $NVDriverURL -OutFile "$InstallDir\NVDriver.zip"
 Expand-Archive -Path "$InstallDir\NVDriver.zip" -DestinationPath "$InstallDir\NVDriver" -Force
-Start-Process "$InstallDir\NVDriver\Windows\*vgaming*.exe" -ArgumentList "-s" -NoNewWindow -Wait
+Start-Process "$InstallDir\NVDriver\*Cloud_Gaming*server2022*.exe" -ArgumentList "-s" -NoNewWindow -Wait
 New-ItemProperty -Path "HKLM:\SOFTWARE\NVIDIA Corporation\Global" -Name "vGamingMarketplace" -PropertyType "DWord" -Value "2"
 Invoke-WebRequest -Uri "https://nvidia-gaming.s3.amazonaws.com/GridSwCert-Archive/GridSwCertWindows_2021_10_2.cert" -OutFile "$Env:PUBLIC\Documents\GridSwCert.txt"
 
